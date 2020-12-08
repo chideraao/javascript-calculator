@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Keypad from "./components/Keypad";
+import Result from "./components/Result";
+import { ResultProvider } from "./context/ResultContext";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<ResultProvider>
+			<div className="App">
+				<h1>HEY WORLD</h1>
+				<Result />
+				<Keypad />
+			</div>
+		</ResultProvider>
+	);
 }
 
 export default App;
