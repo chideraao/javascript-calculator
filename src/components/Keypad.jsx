@@ -7,9 +7,19 @@ function Keypad() {
 	const Calculate = (e) => {
 		setResult((result) => result + e.target.value);
 	};
+
+	const evaluate = () => {
+		// eslint-disable-next-line no-eval
+		setResult(eval(result));
+	};
+
+	const clear = () => {
+		setResult("");
+	};
+
 	return (
 		<div>
-			<button className="card" onClick={Calculate} value="CE">
+			<button className="card" onClick={clear} value="CE">
 				CE
 			</button>
 			<button className="card del" onClick={Calculate} value="Del">
@@ -60,7 +70,7 @@ function Keypad() {
 			<button className="card" onClick={Calculate} value="/">
 				/
 			</button>
-			<button className="card" onClick={Calculate} value="=">
+			<button className="card" onClick={evaluate} value="=">
 				=
 			</button>
 			<button className="card" onClick={Calculate} value=")">
