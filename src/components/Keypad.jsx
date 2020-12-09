@@ -5,6 +5,7 @@ function Keypad() {
 	const [result, setResult] = useContext(ResultContext);
 
 	const Calculate = (e) => {
+		console.log(e);
 		setResult((result) => result + e.target.value);
 	};
 

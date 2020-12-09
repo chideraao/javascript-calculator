@@ -1,11 +1,12 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useReducer, useState } from "react";
+import { resultReducer } from "./ResultReducer";
 
 export const ResultContext = createContext();
 
 export const ResultProvider = (props) => {
-	const [result, setResult] = useState("");
+	const [state, dispatch] = useReducer(resultReducer, { result: "" });
 	return (
-		<ResultContext.Provider value={[result, setResult]}>
+		<ResultContext.Provider value={[state, dispatch]}>
 			{props.children}
 		</ResultContext.Provider>
 	);
