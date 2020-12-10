@@ -1,80 +1,89 @@
 import React, { useContext } from "react";
 import { ResultContext } from "../context/ResultContext";
+import {
+	CALCULATE_TOTAL,
+	CLEAR,
+	DELETE,
+	KEY_PRESS,
+	resultReducer,
+} from "../context/ResultReducer";
 
 function Keypad() {
-	const [result, setResult] = useContext(ResultContext);
+	const [state, dispatch] = useContext(ResultContext);
 
-	const Calculate = (e) => {
-		console.log(e);
-		setResult((result) => result + e.target.value);
+	const keyPress = (e) => {
+		dispatch({ type: KEY_PRESS, payload: e.target.value });
 	};
 
-	const evaluate = () => {
-		// eslint-disable-next-line no-eval
-		setResult(eval(result));
+	const calculate = (result) => {
+		dispatch({ type: CALCULATE_TOTAL });
 	};
 
-	const clear = () => {
-		setResult("");
+	const clearResult = (result) => {
+		dispatch({ type: CLEAR });
+	};
+
+	const deleteItem = () => {
+		dispatch({ type: DELETE });
 	};
 
 	return (
 		<div>
-			<button className="card" onClick={clear} value="CE">
+			<button className="card" onClick={clearResult} value="CE">
 				CE
 			</button>
-			<button className="card del" onClick={Calculate} value="Del">
+			<button className="card del" onClick={deleteItem} value="Del">
 				Del
 			</button>
-			<button className="card" onClick={Calculate} value="1">
+			<button className="card" onClick={keyPress} value="1">
 				1
 			</button>
-			<button className="card" onClick={Calculate} value="2">
+			<button className="card" onClick={keyPress} value="2">
 				2
 			</button>
-			<button className="card" onClick={Calculate} value="3">
+			<button className="card" onClick={keyPress} value="3">
 				3
 			</button>
-			<button className="card" onClick={Calculate} value="4">
+			<button className="card" onClick={keyPress} value="4">
 				4
 			</button>
-			<button className="card" onClick={Calculate} value="5">
+			<button className="card" onClick={keyPress} value="5">
 				5
 			</button>
-			<button className="card" onClick={Calculate} value="6">
+			<button className="card" onClick={keyPress} value="6">
 				6
 			</button>
-			<button className="card" onClick={Calculate} value="7">
+			<button className="card" onClick={keyPress} value="7">
 				7
 			</button>
-			<button className="card" onClick={Calculate} value="8">
+			<button className="card" onClick={keyPress} value="8">
 				8
 			</button>
-			<button className="card" onClick={Calculate} value="9">
+			<button className="card" onClick={keyPress} value="9">
 				9
 			</button>
-			<button className="card" onClick={Calculate} value="0">
+			<button className="card" onClick={keyPress} value="0">
 				0
 			</button>
-			<button className="card" onClick={Calculate} value="(">
+			<button className="card" onClick={keyPress} value="(">
 				(
 			</button>
-			<button className="card" onClick={Calculate} value="+">
+			<button className="card" onClick={keyPress} value="+">
 				+
 			</button>
-			<button className="card" onClick={Calculate} value="-">
+			<button className="card" onClick={keyPress} value="-">
 				-
 			</button>
-			<button className="card" onClick={Calculate} value="*">
+			<button className="card" onClick={keyPress} value="*">
 				*
 			</button>
-			<button className="card" onClick={Calculate} value="/">
+			<button className="card" onClick={keyPress} value="/">
 				/
 			</button>
-			<button className="card" onClick={evaluate} value="=">
+			<button className="card" onClick={calculate} value="=">
 				=
 			</button>
-			<button className="card" onClick={Calculate} value=")">
+			<button className="card" onClick={keyPress} value=")">
 				)
 			</button>
 		</div>

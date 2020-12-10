@@ -7,7 +7,7 @@ function App() {
 	return (
 		<ResultProvider>
 			<div className="App">
-				<h1>HEY WORLD</h1>
+				<h1>JavaScript Calculator</h1>
 				<Result />
 				<Keypad />
 			</div>
