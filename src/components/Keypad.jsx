@@ -4,19 +4,24 @@ import {
 	CALCULATE_TOTAL,
 	CLEAR,
 	DELETE,
+	ERROR,
 	KEY_PRESS,
-	resultReducer,
 } from "../context/ResultReducer";
 
 function Keypad() {
+	// eslint-disable-next-line no-unused-vars
 	const [state, dispatch] = useContext(ResultContext);
 
 	const keyPress = (e) => {
 		dispatch({ type: KEY_PRESS, payload: e.target.value });
 	};
 
-	const calculate = (result) => {
-		dispatch({ type: CALCULATE_TOTAL });
+	const calculate = () => {
+		try {
+			dispatch({ type: CALCULATE_TOTAL });
+		} catch {
+			dispatch({ type: ERROR });
+		}
 	};
 
 	const clearResult = (result) => {
@@ -24,35 +29,13 @@ function Keypad() {
 	};
 
 	const deleteItem = () => {
-		dispatch({ type: DELETE });
+		if (state.result !== "") {
+			dispatch({ type: DELETE });
+		}
 	};
 
 	return (
-		<div>
-			<button className="card" onClick={clearResult} value="CE">
-				CE
-			</button>
-			<button className="card del" onClick={deleteItem} value="Del">
-				Del
-			</button>
-			<button className="card" onClick={keyPress} value="1">
-				1
-			</button>
-			<button className="card" onClick={keyPress} value="2">
-				2
-			</button>
-			<button className="card" onClick={keyPress} value="3">
-				3
-			</button>
-			<button className="card" onClick={keyPress} value="4">
-				4
-			</button>
-			<button className="card" onClick={keyPress} value="5">
-				5
-			</button>
-			<button className="card" onClick={keyPress} value="6">
-				6
-			</button>
+		<div className="container grid">
 			<button className="card" onClick={keyPress} value="7">
 				7
 			</button>
@@ -62,17 +45,22 @@ function Keypad() {
 			<button className="card" onClick={keyPress} value="9">
 				9
 			</button>
-			<button className="card" onClick={keyPress} value="0">
-				0
-			</button>
 			<button className="card" onClick={keyPress} value="(">
 				(
 			</button>
-			<button className="card" onClick={keyPress} value="+">
-				+
+
+			<button className="card" onClick={keyPress} value=")">
+				)
 			</button>
-			<button className="card" onClick={keyPress} value="-">
-				-
+
+			<button className="card" onClick={keyPress} value="4">
+				4
+			</button>
+			<button className="card" onClick={keyPress} value="5">
+				5
+			</button>
+			<button className="card" onClick={keyPress} value="6">
+				6
 			</button>
 			<button className="card" onClick={keyPress} value="*">
 				*
@@ -80,11 +68,37 @@ function Keypad() {
 			<button className="card" onClick={keyPress} value="/">
 				/
 			</button>
+
+			<button className="card" onClick={keyPress} value="1">
+				1
+			</button>
+			<button className="card" onClick={keyPress} value="2">
+				2
+			</button>
+			<button className="card" onClick={keyPress} value="3">
+				3
+			</button>
+			<button className="card" onClick={keyPress} value="-">
+				-
+			</button>
+			<button className="card" onClick={keyPress} value="+">
+				+
+			</button>
+			<button className="card" onClick={keyPress} value="0">
+				0
+			</button>
+			<button className="card" onClick={keyPress} value=".">
+				.
+			</button>
 			<button className="card" onClick={calculate} value="=">
 				=
 			</button>
-			<button className="card" onClick={keyPress} value=")">
-				)
+			<button className="card del" onClick={deleteItem} value="Del">
+				Del
+			</button>
+
+			<button className="card del" onClick={clearResult} value="CE">
+				AC
 			</button>
 		</div>
 	);
