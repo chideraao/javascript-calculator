@@ -1,3 +1,4 @@
+/**setting up the context */
 import React, { createContext, useReducer } from "react";
 import { resultReducer } from "./ResultReducer";
 

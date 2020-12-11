@@ -4,11 +4,11 @@ import {
 	CALCULATE_TOTAL,
 	CLEAR,
 	DELETE,
-	ERROR,
 	KEY_PRESS,
 } from "../context/ResultReducer";
 
 function Keypad() {
+	/**accessing the data in the context and dispatching actions onClick */
 	// eslint-disable-next-line no-unused-vars
 	const [state, dispatch] = useContext(ResultContext);
 
@@ -17,11 +17,7 @@ function Keypad() {
 	};
 
 	const calculate = () => {
-		try {
-			dispatch({ type: CALCULATE_TOTAL });
-		} catch {
-			dispatch({ type: ERROR });
-		}
+		dispatch({ type: CALCULATE_TOTAL });
 	};
 
 	const clearResult = (result) => {
@@ -45,12 +41,12 @@ function Keypad() {
 			<button className="card" onClick={keyPress} value="9">
 				9
 			</button>
-			<button className="card" onClick={keyPress} value="(">
-				(
+			<button className="card del" onClick={deleteItem} value="Del">
+				Del
 			</button>
 
-			<button className="card" onClick={keyPress} value=")">
-				)
+			<button className="card del" onClick={clearResult} value="CE">
+				AC
 			</button>
 
 			<button className="card" onClick={keyPress} value="4">
@@ -90,15 +86,8 @@ function Keypad() {
 			<button className="card" onClick={keyPress} value=".">
 				.
 			</button>
-			<button className="card" onClick={calculate} value="=">
+			<button className="card equals" onClick={calculate} value="=">
 				=
-			</button>
-			<button className="card del" onClick={deleteItem} value="Del">
-				Del
-			</button>
-
-			<button className="card del" onClick={clearResult} value="CE">
-				AC
 			</button>
 		</div>
 	);

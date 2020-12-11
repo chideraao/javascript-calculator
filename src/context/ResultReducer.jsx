@@ -1,8 +1,9 @@
+/**setting up the reducer */
+
 export const CALCULATE_TOTAL = "CALCULATE_TOTAL";
 export const DELETE = "DELETE";
 export const CLEAR = "CLEAR";
 export const KEY_PRESS = "KEY_PRESS";
-export const ERROR = "ERROR";
 
 export const resultReducer = (state, action) => {
 	switch (action.type) {
@@ -15,8 +16,6 @@ export const resultReducer = (state, action) => {
 			return { ...state, result: "", display: "" };
 		case KEY_PRESS:
 			return { ...state, result: state.result + action.payload };
-		case ERROR:
-			return { ...state, result: "ERROR" };
 		default:
 			return state;
 	}
